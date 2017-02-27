@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>></script>
+  <meta charset="utf-8">
+  <title>生成固定数的随机数组</title>
+<style>
+#container{
+  background: black;
+  height:550px;
+  border:1px solid white;
+}
+svg{
+  height: 100%;
+  width: 100%;
+}
+text{
+  fill:white;
+  font: 10px sans-serif;
+  text-anchor: middle;
+}
+.box{
+  fill: #65cbed;
+}
+</style>
+</head>
+<body>
+<div id="container"></div>
+<script>
+  //生成固定数的随机数组
+  var arr=[];
+for(var rd=0;rd<10;rd++){
+  var randomData = Math.floor(Math.random()*100+1);
+  arr.push(randomData);
+}
+//初始化数组长度的html，并给出id
+var len=arr.length;
+var idName="idName";
+var html = '';
+html += '<svg>';
+for(var key=0;key<len;key++){
+
+    var long=arr[key]*5;
+    var longx=key*40+50;
+    var longxx=key*40+57;
+    var longy=500-arr[key]*5;
+
+html +='<g><rect data-id='+key+' class=box width=15 height='+long+' x='+longx+' y='+longy+' ry=3></rect><text dy=0.1em x='+longxx+' y=520>'+long+'</text></g>';
+}
+html += '</svg>';
+document.getElementById('container').innerHTML = html;
+
+//指定一个柱体
+// document.getElementById('a1').style.height = "100px";
+// document.getElementById('a1').innerText="100";
+//选择排序
+var i=0;
+var scan=function(){
+  var minIndex, temp;
+  var box = document.getElementsByClassName("box");
+
+// console.log(parseInt(box[i].getAttribute("data-id")));
+
+  for(o=0;o<len;o++){ //上蓝色
+    box[o].style.fill="#65cbed";
+  }
+  if(i<len){ //上红色
+    box[i].style.fill="red";
+  }
+  i++;
+}; //scan
+setInterval(scan,300);
+</script>
+</body>
+</html>
